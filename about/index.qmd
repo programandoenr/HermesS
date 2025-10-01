@@ -19,18 +19,16 @@ library(htmltools)
 source("../R/functions.R")
 ```
 
+### We are responsible for:
 
-### We are responsible for:  
-
-- Data analysis & reporting on key projects
-- R package development & maintenance
-- Outreach & engagement with the research community
-
-
+-   Data analysis & reporting on key projects
+-   R package development & maintenance
+-   Outreach & engagement with the research community
 
 # Meet the team
 
 *Click on photos to view their articles and contributions*
+
 ```{r}
 #| echo: false
 tags$div(class = "row",# Create a row for 3 team-member cards
@@ -76,4 +74,3 @@ create_team_card(
 )
 )
 ```
-
