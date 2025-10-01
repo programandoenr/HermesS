@@ -8,6 +8,3 @@ format:
     anchor-sections: false
     css: [theme.css, index.css]
 ---
-
-
-
