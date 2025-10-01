@@ -1,1 +1,54 @@
-<script src='https://cdn.usefathom.com/script.js' data-site='QDWZORBB' defer></script>
+
+
+
+
+ggplot(
+  top20_breaches_2024,
+  aes(x = records_lost, y = reorder(organisation, records_lost))
+) +
+  geom_point(size = 5, aes(color = sector)) +
+
+  # label for Ticketmaster
+  geom_text_repel(
+    data = top_lab,
+    aes(label = label_text),
+    direction = "x", hjust = 0,
+    min.segment.length = Inf, segment.size = 0,
+    box.padding = 0.1, point.padding = 0.2,
+    seed = 123
+  ) +
+
+  # use Okabe–Ito (color-blind friendly)
+  scale_color_manual(values = okabe_ito) +
+
+  # force the axis you want, keep extra room for the label
+  scale_x_continuous(
+    trans  = "log10",
+    breaks = breaks_vec,
+    labels = labels_vec,
+    expand = expansion(mult = c(0.02, 0.28))
+  ) +
+
+  coord_cartesian(clip = "off") +
+
+  labs(
+    title   = "Figure 2. Principales filtraciones de datos de 2024",
+    x       = "Records Lost",
+    y       = NULL,
+    color   = "Sector",
+    caption = "Source: McCandless, D. (2022). Los mayores casos de filtración y piratería informática del mun"
+  ) +
+
+  # ---- apply your global figure styling ----
+theme(
+    plot.title            = element_text(size = rel(1.2)),
+    axis.title            = element_text(size = rel(1.0)),
+    legend.position  = "right",
+    # match Fig. 1 caption alignment & spacing control
+    plot.caption.position = "plot",
+    plot.caption     = element_text(hjust = 1, margin = margin(t = 20)),
+    # optional: lighten grid to match your fig 1 feel
+    panel.grid.major.y = element_line(linetype = "dashed", color = "gray80"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
